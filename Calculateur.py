@@ -7,24 +7,23 @@ def is_digit(s: str) -> bool:
 # Définition de la fonction evaluer() qui prend en entrée une chaîne de caractères représentant une expression arithmétique
 # et qui retourne le résultat de l'évaluation de cette expression sous forme d'un entier.
 
-def len(string: str) -> int:
+def longueur(string: str) -> int:
     count = 0
     while string[count:]:
         count += 1
     return count
 
 def pop_1(liste):
-    if len(liste) == 0:
+    if longueur(liste) == 0:
         return None
     else:
         last = liste[-1]
     return last
 
 def pop_2(liste):
-    if len(liste) == 0:
+    if longueur(liste) == 0:
         return None
     else:
-        last = liste[-1]
         liste = liste[:-1]
     return liste
 
@@ -38,11 +37,11 @@ def operande(pile, char):
     pile = pop_2(pile)
     op1 = int(pop_1(pile))
     pile = pop_2(pile)
-    resultat = checkOperande(pile, char, op1, op2)
+    resultat = checkOperande(char, op1, op2)
     pile = append(pile,resultat)
     return pile
 
-def checkOperande(pile, char, op1, op2):
+def checkOperande(char, op1, op2):
     # Selon l'opérateur, on effectue l'opération correspondante avec op1 et op2 et on empile le résultat sur la pile.
     if char == '+':
         resultat = op1 + op2
@@ -52,16 +51,16 @@ def checkOperande(pile, char, op1, op2):
         resultat = op1 * op2
     elif char == '/':
         if op2!=0:
-            resultat = op1 / op20
+            resultat = op1 / op2
         else:
             return 'Impossible'
     return resultat
 
  # Initialisation de la pile qui va stocker les opérandes pendant l'évaluation de l'expression dans les paramètres.
-def evaluer(expression: str,pile = [],var = '',space = 0,pile_sort = [], i = 0) -> int:
+def evaluer(expression: str,pile = [],var = '',space = 0, i = 0) -> int:
 
   # Parcours de la chaîne de caractères de l'expression, caractère par caractère.
-  while i < len(expression):
+  while i < longueur(expression):
     char = expression[i]
     i += 1
     if char!=' ' and char !='+'and char !='-'and char !='*'and char !='/':
